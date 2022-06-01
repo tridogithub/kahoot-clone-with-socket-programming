@@ -110,7 +110,7 @@ char *getResults(char *receivedString)
 
     char *results = (char *)malloc(sizeof(char) * MAXLINE);
 
-    char *token = strtok(receivedString, "-");
+    char *token = strtok(receivedString, "_");
 
     if (strcmp(token, LOGIN) == 0)
     {

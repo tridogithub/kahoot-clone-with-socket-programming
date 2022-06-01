@@ -1,3 +1,5 @@
+#ifndef __CONSTANT_H
+#define __CONSTANT_H
 //CODE
 #define LOGIN "login" //receive from client
 #define REGISTER "reg" //receive from client
@@ -13,3 +15,5 @@
 #define GETPOINT "getTotalPoint"
 #define REQUESTRANKTABLE "reqRankTable" //receive from client
 #define GETRANKTABLE "getRankTable"
+
+#endif
