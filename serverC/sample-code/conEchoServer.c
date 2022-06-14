@@ -13,6 +13,7 @@
 #include <signal.h>
 
 #include <string.h>
+#include <unistd.h>
 
 #define MAXLINE 4096 /*max text line length*/
 

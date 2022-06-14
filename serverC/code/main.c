@@ -116,9 +116,18 @@ char *getResults(char *receivedString)
     {
         // TODO implement new method for login function
         //  and return string to client saved to Variable results
+        token = strtok(NULL, "-");
+        char *username = strtok(token, ":");
+        char *password = strtok(NULL, "");
+        login (username, password, results);
+        strtok(NULL, "");
     }
     else if (strcmp(token, REGISTER) == 0)
     {
+        token = strtok (NULL, "-");
+        char *username = strtok(token, ":");
+        char *password = strtok(NULL, "");
+        registryNewUser(username, password);
         // TODO implement new method for register function
         //  and return string to client saved to Variable results
     }
