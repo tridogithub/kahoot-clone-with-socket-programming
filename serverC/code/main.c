@@ -9,11 +9,19 @@
 #include <signal.h>
 #include <string.h>
 
+<<<<<<< HEAD
 #include "historyAnswer.h"
 #include "questionSuite.h"
 #include "room.h"
 #include "userAccount.h"
 #include "constant.h"
+=======
+#include <historyAnswer.h>
+#include <questionSuite.h>
+#include <room.h>
+#include <userAccount.h>
+#include <constant.h>
+>>>>>>> cb55dc5911b92a6f375efdfc8851463fc3a2a22e
 
 #define MAXLINE 4096   /*max text line length*/
 #define SERV_PORT 3000 /*port*/
@@ -126,6 +134,7 @@ char *getResults(char *receivedString)
     {
         // TODO implement new method for request Question Suite function
         //  and return string to client saved to Variable results
+<<<<<<< HEAD
         char *listQS = ReturnQS();
         int num = sizeof listQS / sizeof *listQS;
         char *resultsQS = (char *)malloc(sizeof(char) * MAXLINE);
@@ -138,11 +147,14 @@ char *getResults(char *receivedString)
         }
         strcpy(results,resultsQS);
         
+=======
+>>>>>>> cb55dc5911b92a6f375efdfc8851463fc3a2a22e
     }
     else if (strcmp(token, CREATEROOM) == 0)
     {
         // TODO implement new method for Create Room function
         //  and return string to client saved to Variable results
+<<<<<<< HEAD
         token = strtok(NULL,"_");
         char* roomCode = (char *)malloc(sizeof(char) * MAXLINE);
         rand_room_code(7,roomCode);
@@ -151,6 +163,8 @@ char *getResults(char *receivedString)
         strcat(ResultsCR,"getRoomCode_");
         strcat(ResultsCR,roomCode);
         strcpy(results,ResultsCR);
+=======
+>>>>>>> cb55dc5911b92a6f375efdfc8851463fc3a2a22e
     }
     else if (strcmp(token, JOINROOM) == 0)
     {
@@ -176,10 +190,13 @@ char *getResults(char *receivedString)
     {
         // TODO implement new method for Rank Table function
         //  and return string to client saved to Variable results
+<<<<<<< HEAD
         token = strtok(NULL,"_");
         char* roomCode = (char *)malloc(sizeof(char) * MAXLINE);
         strcpy(roomCode,token);
         strcpy(results,rankOfRoom(roomCode));
+=======
+>>>>>>> cb55dc5911b92a6f375efdfc8851463fc3a2a22e
     }
     else
     {

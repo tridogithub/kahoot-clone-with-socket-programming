@@ -1,7 +1,9 @@
 - Format message: CODE_CONTENT_(STATUS) 
 //Login: login_username:pass
+//-->server return CODE: authenticated/unauthenticated
 
 //Registration: reg_username:pass
+//-->server return CODE: successful/failure
 
 //Create room(select question suite)::::::
 	Request list of question suites: requestQS
@@ -23,3 +25,5 @@
 ////Consider later:
 Tao question(optional):
 Xem totalpoint sau moi cau tra loi(Optional):
+
+None of the CODE matched --> server return CODE: error
