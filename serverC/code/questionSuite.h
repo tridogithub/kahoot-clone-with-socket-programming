@@ -6,6 +6,7 @@ typedef struct
     char answer2[100];
     char answer3[100];
     char answer4[100];
+    char correctAns[100];
 } Question;
 
 typedef struct
@@ -18,3 +19,4 @@ typedef struct
 
 QuestionSuite getQuestionSuiteByQsID(char *qsID);
 int saveNewQuestion(char *questionSuiteID, Question question); //append to file
+char *ReturnQS();
