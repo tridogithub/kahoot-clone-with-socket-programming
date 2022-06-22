@@ -13,4 +13,6 @@ typedef struct
 
 int assignNewUserToRoom(char *username, int initialPoint); //append to file txt
 Room getRoomByRoomCode(int roomCode); //get data from file "roomCode.txt"
-
+void rand_room_code(int length, char *result);
+void CreateRoom(char* roomCode);
+char* rankOfRoom(char* roomCode);
