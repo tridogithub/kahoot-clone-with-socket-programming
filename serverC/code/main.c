@@ -116,18 +116,24 @@ char *getResults(char *receivedString)
     {
         // TODO implement new method for login function
         //  and return string to client saved to Variable results
-        token = strtok(NULL, "-");
+        token = strtok(NULL, "_");
         char *username = strtok(token, ":");
         char *password = strtok(NULL, "");
         login (username, password, results);
+        if (strcmp ( results, "authenticated")==0)
+        {
+            strcpy(currentUserId, username);
+            
+        }
         strtok(NULL, "");
     }
     else if (strcmp(token, REGISTER) == 0)
     {
-        token = strtok (NULL, "-");
+        token = strtok (NULL, "_");
         char *username = strtok(token, ":");
         char *password = strtok(NULL, "");
         registryNewUser(username, password);
+        strcpy(results, "success");
         // TODO implement new method for register function
         //  and return string to client saved to Variable results
     }
@@ -143,6 +149,9 @@ char *getResults(char *receivedString)
     }
     else if (strcmp(token, JOINROOM) == 0)
     {
+        token = strtok (NULL, "_");
+        assignNewUserToRoom(currentUserId, 0, token);
+         strcpy(results, "success");
         // TODO implement new method for Join Room function
         //  and return string to client saved to Variable results
     }

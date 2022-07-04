@@ -36,13 +36,13 @@ void login(char *username, char *password, char *result)
         printf("\nAuthenticated");
         authenticated = 1;
         strcpy(currentUser, username);
-        strcpy(result, "Authenticated");
+        strcpy(result, "authenticated");
     }
     else
     {
         printf("\nNot Authenticated");
         authenticated = 0;
-        strcpy(result, "Not Authenticated");
+        strcpy(result, "unauthenticated");
     }
 }
 User *getAllUser();
