@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdlib.h>
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -9,18 +8,18 @@
 #include <signal.h>
 #include <string.h>
 
-#include <historyAnswer.h>
-#include <questionSuite.h>
-#include <room.h>
-#include <userAccount.h>
-#include <constant.h>
+#include "historyAnswer.h"
+#include "questionSuite.h"
+#include "room.h"
+#include "userAccount.h"
+#include "constant.h"
 
 #define MAXLINE 4096   /*max text line length*/
 #define SERV_PORT 3000 /*port*/
 #define LISTENQ 8      /*maximum number of client connections*/
 
 // method definition
-void sig_cld();
+void sig_chld();
 char *getResults(char *receivedString);
 
 // global variable
@@ -110,7 +109,7 @@ char *getResults(char *receivedString)
 
     char *results = (char *)malloc(sizeof(char) * MAXLINE);
 
-    char *token = strtok(receivedString, "-");
+    char *token = strtok(receivedString, "_");
 
     if (strcmp(token, LOGIN) == 0)
     {
@@ -119,20 +118,21 @@ char *getResults(char *receivedString)
         token = strtok(NULL, "_");
         char *username = strtok(token, ":");
         char *password = strtok(NULL, "");
-        login (username, password, results);
-        if (strcmp ( results, "authenticated")==0)
+        login(username, password, results);
+        if (strcmp(results, "authenticated") == 0)
         {
             strcpy(currentUserId, username);
-            
         }
-        strtok(NULL, "");
     }
     else if (strcmp(token, REGISTER) == 0)
     {
-        token = strtok (NULL, "_");
+        token = strtok(NULL, "_");
         char *username = strtok(token, ":");
         char *password = strtok(NULL, "");
-        registryNewUser(username, password);
+        User *newUser = (User *)malloc(sizeof(User));
+        strcpy(newUser->username, username);
+        strcpy(newUser->password, password);
+        registryNewUser(newUser);
         strcpy(results, "success");
         // TODO implement new method for register function
         //  and return string to client saved to Variable results
@@ -149,9 +149,9 @@ char *getResults(char *receivedString)
     }
     else if (strcmp(token, JOINROOM) == 0)
     {
-        token = strtok (NULL, "_");
+        token = strtok(NULL, "_");
         assignNewUserToRoom(currentUserId, 0, token);
-         strcpy(results, "success");
+        strcpy(results, "success");
         // TODO implement new method for Join Room function
         //  and return string to client saved to Variable results
     }
@@ -179,6 +179,6 @@ char *getResults(char *receivedString)
     {
         // TODO return error message
     }
-
+    strcat(results, "\n");
     return results;
 }

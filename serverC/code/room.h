@@ -11,6 +11,6 @@ typedef struct
     UserPoint userAndPoint[100]; //temporary limitation to 100 users
 } Room;
 
-int assignNewUserToRoom(char *username, int initialPoint); //append to file txt
+void assignNewUserToRoom(char *username, int initialPoint, char *token); //append to file txt
 Room getRoomByRoomCode(int roomCode); //get data from file "roomCode.txt"
 
