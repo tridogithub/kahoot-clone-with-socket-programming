@@ -16,8 +16,8 @@ int checkAuthenticated(char *username, char *password){
         if (strcmp(username, token) == 0)
         {
             token = strtok(NULL, " ");
-            // token[strlen(token)-1] = '\0';
-            token[strlen(token) - 1] = 13;
+            token[strlen(token)-1] = '\0';
+            // token[strlen(token) - 1] = 13;
             password[strlen(password) - 1] = '\0';
             printf("\n%d", strcmp(password, token));
             if (strcmp(password, token) == 0)
@@ -49,8 +49,8 @@ void login(char *username, char *password, char *result)
 }
 User *getAllUser();
 int registryNewUser(User* newUser){
-    FILE *fp = fopen("user-account.txt", "a");
-    fprintf(fp, "%s %s\n", newUser->username, newUser->password);
+    FILE *fp = fopen("../user-account.txt", "a");
+    fprintf(fp, "%s %s", newUser->username, newUser->password);
     fclose(fp);
     return 1; //registry new user
 }; // append to file

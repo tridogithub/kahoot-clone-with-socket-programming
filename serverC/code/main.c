@@ -117,7 +117,7 @@ char *getResults(char *receivedString)
         //  and return string to client saved to Variable results
         token = strtok(NULL, "_");
         char *username = strtok(token, ":");
-        char *password = strtok(NULL, "");
+        char *password = strtok(NULL, ":");
         login(username, password, results);
         if (strcmp(results, "authenticated") == 0)
         {
@@ -128,7 +128,7 @@ char *getResults(char *receivedString)
     {
         token = strtok(NULL, "_");
         char *username = strtok(token, ":");
-        char *password = strtok(NULL, "");
+        char *password = strtok(NULL, ":");
         User *newUser = (User *)malloc(sizeof(User));
         strcpy(newUser->username, username);
         strcpy(newUser->password, password);
