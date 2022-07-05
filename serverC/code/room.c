@@ -2,17 +2,25 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
-#include <room.h>
 
-int assignNewUserToRoom(char *username, int initialPoint) // append to file txt
+#include "room.h"
+
+#define MAXLINE 4096
+
+void assignNewUserToRoom(char *username, int initialPoint, char *token) // append to file txt
 {
+    strcat(token, ".txt");
+    FILE *fp = fopen(token, "a");
+    char buf[1024];
+    fprintf(fp, "%s_%d", username, initialPoint);
+    fclose(fp);
 }
 Room getRoomByRoomCode(int roomCode) // get data from file "roomCode.txt"
 {
 }
 
 void CreateRoom(char* roomCode){
-    char* dir = (char *)malloc(sizeof(char) * MAXLINE);;
+    char* dir = (char *)malloc(sizeof(char) * MAXLINE);
     strcat(dir,"/home/phankhanh658/kahoot-clone-with-socket-programming/serverC/room/");
     strcat(dir,roomCode);
     FILE* f = fopen(dir,"w+");

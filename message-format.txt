@@ -3,13 +3,14 @@
 //-->server return CODE: authenticated/unauthenticated
 
 //Registration: reg_username:pass
-//-->server return CODE: successful/failure
+result: success
 
 //Create room(select question suite)::::::
 	Request list of question suites: requestQS
 	Send list of question suites to client: getQS_qs1:qs2:qs3
 	Request server create room: cr_qs1
 	Get room code from server: getRoomCode_{roomCode}
+	
 //Join room: joinRoom_{roomCode}
  while(STATUS != FINAL){
 	Client request question from server: reqQ_roomCode_questionID
@@ -21,7 +22,7 @@
 //Request history answer and : client's work
 //Request rank table: reqRankTable_roomCode
 //Get rank table from server: getRankTable_Username:TotalPoint_Username:TotalPoint_Username:TotalPoint
-
+	result: success
 ////Consider later:
 Tao question(optional):
 Xem totalpoint sau moi cau tra loi(Optional):
