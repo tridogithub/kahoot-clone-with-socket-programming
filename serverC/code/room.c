@@ -21,14 +21,16 @@ Room getRoomByRoomCode(int roomCode) // get data from file "roomCode.txt"
 
 void CreateRoom(char* roomCode){
     char* dir = (char *)malloc(sizeof(char) * MAXLINE);
-    strcat(dir,"/home/phankhanh658/kahoot-clone-with-socket-programming/serverC/room/");
+    strcat(dir,"../room/");
     strcat(dir,roomCode);
     FILE* f = fopen(dir,"w+");
-    fclose(dir);
+    fclose(f);
 }
 
 
 void rand_room_code(int length, char *result) {
+    time_t t;
+    srand((unsigned) time(&t));
     int i, rand_int;
     char char_set[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz&quot";
  
@@ -41,7 +43,7 @@ void rand_room_code(int length, char *result) {
 char* rankOfRoom(char* roomCode){
     char* dir = (char *)malloc(sizeof(char) * MAXLINE);
     char* results = (char *)malloc(sizeof(char) * MAXLINE);
-    strcat(dir,"/home/phankhanh658/kahoot-clone-with-socket-programming/serverC/room/");
+    strcat(dir,"../room/");
     strcat(dir,roomCode);
     FILE* f = fopen(dir,"r+");
 

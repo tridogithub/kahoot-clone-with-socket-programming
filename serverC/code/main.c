@@ -139,14 +139,18 @@ char *getResults(char *receivedString)
     }
     else if (strcmp(token, REQUESTQS) == 0)
     {
+        printf("\n...");
         // TODO implement new method for request Question Suite function
         //  and return string to client saved to Variable results
-        char *listQS = ReturnQS();
-        int num = sizeof listQS / sizeof *listQS;
+        int numberOfQS = 0;
+        ListQS listQS = ReturnQS(&numberOfQS);
+        printf("\n%s", listQS.listQS[0]);
+        int num = numberOfQS;
+        printf("\nNum: %d", num);
         char *resultsQS = (char *)malloc(sizeof(char) * MAXLINE);
-        strcat(resultsQS,"getQS_")
-        for(int i = 0; i<num-1; i++){
-            strcat(resultsQS,listQS[i]);
+        strcat(resultsQS,"getQS_");
+        for(int i = 0; i<=num-1; i++){
+            strcat(resultsQS, listQS.listQS[i]);
             if(i!=num-1){
                 strcat(resultsQS,":");
             }
