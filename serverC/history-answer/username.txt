@@ -1,3 +1,4 @@
+CurrentPoint
 questionID_answer_{TRUE, FALSE}
 questionID_answer_{TRUE, FALSE}
 questionID_answer_{TRUE, FALSE}

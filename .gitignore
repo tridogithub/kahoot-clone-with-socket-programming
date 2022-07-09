@@ -1,6 +1,4 @@
 .vscode
 *.pptx
 /clientJava/
-/serverC/room/
-/serverC/question-suite
-/serverC/history-answer
+

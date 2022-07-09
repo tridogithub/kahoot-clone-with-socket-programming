@@ -164,18 +164,20 @@ char *getResults(char *receivedString)
         //  and return string to client saved to Variable results
         token = strtok(NULL,"_");
         char* roomCode = (char *)malloc(sizeof(char) * MAXLINE);
-        rand_room_code(7,roomCode);
-        CreateRoom(roomCode);
         char* ResultsCR = (char *)malloc(sizeof(char) * MAXLINE);
         strcat(ResultsCR,"getRoomCode_");
+        rand_room_code(7,roomCode);
         strcat(ResultsCR,roomCode);
         strcpy(results,ResultsCR);
+        
+        CreateRoom(roomCode, token);
+        
     }
     else if (strcmp(token, JOINROOM) == 0)
     {
         token = strtok(NULL, "_");
-        assignNewUserToRoom(currentUserId, 0, token);
-        strcpy(results, "success");
+        char* status = assignNewUserToRoom(currentUserId, 0, token);
+        strcpy(results, status);
         // TODO implement new method for Join Room function
         //  and return string to client saved to Variable results
     }
