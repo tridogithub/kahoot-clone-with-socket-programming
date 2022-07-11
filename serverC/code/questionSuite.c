@@ -5,6 +5,8 @@
 
 #include "questionSuite.h"
 
+#define location "../question-suite/"
+
 QuestionSuite getQuestionSuiteByQsID(char *qsID)
 {
     QuestionSuite newQSSuite;
@@ -63,4 +65,48 @@ ListQS ReturnQS(int *count)
 
 int saveNewQuestion(char *questionSuiteID, Question question) // append to file
 {
+}
+
+char *getQuestionByQID(char *quesitonSuiteID, int questionID)
+{
+
+    char filePath[100] = "../question-suite/";
+    strcat(filePath, quesitonSuiteID);
+
+    FILE *fp = fopen(filePath, "r");
+    char *result = (char *)malloc(sizeof(char) * 4096);
+    int count = 0;
+    char line[500];
+    while (fgets(line, sizeof line, fp) != NULL) /* read a line */
+    {
+        if (count == questionID)
+        {
+            // printf("\n%s", line);
+            strcpy(result, line);
+            break;
+        }
+        else
+        {
+            count++;
+        }
+    }
+    fclose(fp);
+    return result;
+}
+
+char *getQuestionSuiteIDByRoomCode(char *roomCode)
+{
+    printf("\n...");
+    char filePath[100] = "../room/";
+    strcat(filePath, roomCode);
+
+    FILE *fp = fopen(filePath, "r");
+    char *result = (char *)malloc(sizeof(char) * 50);
+    // char line[50];
+    fscanf(fp, "%s", result); /* read a line */
+    printf("\n%s---", result);
+    // strcat(result, line);
+    // result[strlen(result) - 2] = '\0';
+    fclose(fp);
+    return result;
 }

@@ -23,5 +23,7 @@ typedef struct
 } ListQS;
 
 QuestionSuite getQuestionSuiteByQsID(char *qsID);
-int saveNewQuestion(char *questionSuiteID, Question question); //append to file
+int saveNewQuestion(char *questionSuiteID, Question question); // append to file
 ListQS ReturnQS();
+char *getQuestionByQID(char *quesitonSuiteID, int questionID);
+char *getQuestionSuiteIDByRoomCode(char *roomCode);

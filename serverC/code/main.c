@@ -148,35 +148,35 @@ char *getResults(char *receivedString)
         int num = numberOfQS;
         printf("\nNum: %d", num);
         char *resultsQS = (char *)malloc(sizeof(char) * MAXLINE);
-        strcat(resultsQS,"getQS_");
-        for(int i = 0; i<=num-1; i++){
+        strcat(resultsQS, "getQS_");
+        for (int i = 0; i <= num - 1; i++)
+        {
             strcat(resultsQS, listQS.listQS[i]);
-            if(i!=num-1){
-                strcat(resultsQS,":");
+            if (i != num - 1)
+            {
+                strcat(resultsQS, ":");
             }
         }
-        strcpy(results,resultsQS);
-        
+        strcpy(results, resultsQS);
     }
     else if (strcmp(token, CREATEROOM) == 0)
     {
         // TODO implement new method for Create Room function
         //  and return string to client saved to Variable results
-        token = strtok(NULL,"_");
-        char* roomCode = (char *)malloc(sizeof(char) * MAXLINE);
-        char* ResultsCR = (char *)malloc(sizeof(char) * MAXLINE);
-        strcat(ResultsCR,"getRoomCode_");
-        rand_room_code(7,roomCode);
-        strcat(ResultsCR,roomCode);
-        strcpy(results,ResultsCR);
-        
+        token = strtok(NULL, "_");
+        char *roomCode = (char *)malloc(sizeof(char) * MAXLINE);
+        char *ResultsCR = (char *)malloc(sizeof(char) * MAXLINE);
+        strcat(ResultsCR, "getRoomCode_");
+        rand_room_code(7, roomCode);
+        strcat(ResultsCR, roomCode);
+        strcpy(results, ResultsCR);
+
         CreateRoom(roomCode, token);
-        
     }
     else if (strcmp(token, JOINROOM) == 0)
     {
         token = strtok(NULL, "_");
-        char* status = assignNewUserToRoom(currentUserId, 0, token);
+        char *status = assignNewUserToRoom(currentUserId, 0, token);
         strcpy(results, status);
         // TODO implement new method for Join Room function
         //  and return string to client saved to Variable results
@@ -185,6 +185,22 @@ char *getResults(char *receivedString)
     {
         // TODO implement new method for Request Question function
         //  and return string to client saved to Variable results
+        char *roomCode = strtok(NULL, "_");
+        char *qsID = getQuestionSuiteIDByRoomCode(roomCode);
+        char *qIDString = strtok(NULL, "_");
+
+        qIDString[strlen(qIDString) - 2] = '\0';
+
+        strcpy(results, "getQ_");
+        strcat(results, qIDString);
+        strcat(results, "_");
+        printf("\n...");
+
+        int qID = atoi(qIDString);
+        printf("\n%s-%d", qsID, qID);
+        char *question = (char *)malloc(sizeof(char) * 2048);
+        question = getQuestionByQID(qsID, qID);
+        strcat(results, question);
     }
     else if (strcmp(token, SENDANS) == 0)
     {
@@ -200,10 +216,10 @@ char *getResults(char *receivedString)
     {
         // TODO implement new method for Rank Table function
         //  and return string to client saved to Variable results
-        token = strtok(NULL,"_");
-        char* roomCode = (char *)malloc(sizeof(char) * MAXLINE);
-        strcpy(roomCode,token);
-        strcpy(results,rankOfRoom(roomCode));
+        token = strtok(NULL, "_");
+        char *roomCode = (char *)malloc(sizeof(char) * MAXLINE);
+        strcpy(roomCode, token);
+        strcpy(results, rankOfRoom(roomCode));
     }
     else
     {
