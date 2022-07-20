@@ -1,4 +1,4 @@
 CurrentPoint
-questionID_answer_{TRUE, FALSE}
-questionID_answer_{TRUE, FALSE}
-questionID_answer_{TRUE, FALSE}
+questionID:answer:{1, 0}
+questionID:answer:{1, 0}
+questionID:answer:{1, 0}

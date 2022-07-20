@@ -16,7 +16,7 @@ result: success
  while(STATUS != FINAL){
 	Client request question from server: reqQ_roomCode_questionID
 	Get question from server: getQ_questionID_question:answer1:answer2:answer3:answer4:correctAns_STATUS -> STATUS={CON, FINAL}
-	Send answer to server: sendAns_roomCode_questionID:answer1
+	Send answer to server: sendAns_roomCode_questionID:answer1:{TRUE/FALSE}
  }
 //Request total point to server: reqTotalPoint_username_roomCode
 //Get total point from server:   getTotalPoint_{point}
@@ -24,6 +24,9 @@ result: success
 //Request rank table: reqRankTable_roomCode
 //Get rank table from server: getRankTable_Username:TotalPoint_Username:TotalPoint_Username:TotalPoint
 
+//Get answer detail of other players:
+	reqAnsDetail_{roomCode}_{questionID}
+	getAnsDetail_{numberOfAnswer}:{numberOfAnswer}:{numberOfAnswer}:{numberOfAnswer}
 ////Consider later:
 Tao question(optional):
 Xem totalpoint sau moi cau tra loi(Optional):

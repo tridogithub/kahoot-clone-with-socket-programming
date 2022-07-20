@@ -24,12 +24,14 @@ char *getResults(char *receivedString);
 
 // global variable
 char *currentUserId;
+char *currentRoom;
 
 int main(int argc, char **argv)
 
 {
 
     currentUserId = (char *)malloc(sizeof(char) * 20);
+    currentRoom = (char *)malloc(sizeof(char) * 20);
     // TODO: read question suite datas
 
     int listenfd, connfd, n;
@@ -168,6 +170,7 @@ char *getResults(char *receivedString)
         char *ResultsCR = (char *)malloc(sizeof(char) * MAXLINE);
         strcat(ResultsCR, "getRoomCode_");
         rand_room_code(7, roomCode);
+        strcpy(currentRoom, roomCode);
         strcat(ResultsCR, roomCode);
         strcpy(results, ResultsCR);
 
@@ -177,6 +180,7 @@ char *getResults(char *receivedString)
     {
         token = strtok(NULL, "_");
         char *status = assignNewUserToRoom(currentUserId, 0, token);
+        createUserHistoryFile(currentUserId);
         strcpy(results, status);
         // TODO implement new method for Join Room function
         //  and return string to client saved to Variable results
@@ -206,23 +210,60 @@ char *getResults(char *receivedString)
     {
         // TODO implement new method for Send Answer function
         //  and return string to client saved to Variable results
+        Answer answer;
+        int statusInt = 0;
+        char *roomCode = strtok(NULL, "_");
+        // printf("\n...");
+        char *content = strtok(NULL, "_");
+        // printf("\n...");
+        char *qID = strtok(content, ":");
+        int qIDInt = atoi(qID);
+        // printf("\n%s-%d", qID, qIDInt);
+        char *ans = strtok(NULL, ":");
+        int ansNum = atoi(ans);
+        // printf("\n%s-%d", ans, ansNum);
+        char *status = strtok(NULL, ":");
+        // printf("\n%s", status);
+        strtok(NULL, ":");
+        status[strlen(status) - 2] = '\0';
+        
+        strcpy(results, "wrong");
+        if (strcmp(status, "TRUE") == 0)
+        {
+            statusInt = 1;
+            printf("\nTRUE");
+            strcpy(results, "correct");
+        }
+
+        answer.questionId = qIDInt;
+        answer.answer = ansNum;
+        answer.isCorrect = statusInt;
+        saveHistoryAns(currentUserId, answer);
+        
     }
     else if (strcmp(token, REQUESTPOINT) == 0)
     {
         // TODO implement new method for Request Total Point function
         //  and return string to client saved to Variable results
+        char *username = strtok(NULL, "_");
+        char *roomCode = strtok(NULL, "_");
+
+        int currentPoint = getCurrentPoint(username);
+        sprintf(results, "%s_%d", "getTotalPoint", currentPoint);
     }
     else if (strcmp(token, REQUESTRANKTABLE) == 0)
     {
         // TODO implement new method for Rank Table function
         //  and return string to client saved to Variable results
         token = strtok(NULL, "_");
-        char *roomCode = (char *)malloc(sizeof(char) * MAXLINE);
-        strcpy(roomCode, token);
-        strcpy(results, rankOfRoom(roomCode));
+        // char *roomCode = (char *)malloc(sizeof(char) * MAXLINE);
+        // strcpy(roomCode, token);
+        // strcpy(results, rankOfRoom(roomCode));
+        strcpy(results, getRankTable(token));
     }
     else
     {
+        strcpy(results, "CODE_NOT_MATCH_ERROR");
         // TODO return error message
     }
     strcat(results, "\n");
