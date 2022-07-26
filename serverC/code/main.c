@@ -226,7 +226,7 @@ char *getResults(char *receivedString)
         // printf("\n%s", status);
         strtok(NULL, ":");
         status[strlen(status) - 2] = '\0';
-        
+
         strcpy(results, "wrong");
         if (strcmp(status, "TRUE") == 0)
         {
@@ -239,7 +239,6 @@ char *getResults(char *receivedString)
         answer.answer = ansNum;
         answer.isCorrect = statusInt;
         saveHistoryAns(currentUserId, answer);
-        
     }
     else if (strcmp(token, REQUESTPOINT) == 0)
     {
@@ -256,10 +255,35 @@ char *getResults(char *receivedString)
         // TODO implement new method for Rank Table function
         //  and return string to client saved to Variable results
         token = strtok(NULL, "_");
+        token[strlen(token) - 2] = '\0';
         // char *roomCode = (char *)malloc(sizeof(char) * MAXLINE);
         // strcpy(roomCode, token);
         // strcpy(results, rankOfRoom(roomCode));
         strcpy(results, getRankTable(token));
+    }
+    else if (strcmp(token, REQUESTANSDETAIL) == 0)
+    {
+        // TODO implement new method for Get Ans detail function
+        //  and return string to client saved to Variable results
+        // token = strtok(NULL, "_");
+        char *roomCode = (char *)malloc(sizeof(char) * 10);
+        roomCode = strtok(NULL, "_");
+        token = strtok(NULL, "_");
+        int questionID = atoi(token);
+        strcpy(results, getAnsDetail(roomCode, questionID));
+    }
+    else if (strcmp(token, REQUESTHISTORYANSWER) == 0)
+    {
+        char *username = strtok(NULL, "_");
+        HistoryAnswer *historyAnswer = malloc(sizeof(HistoryAnswer));
+        getHistoryAnswerByUsername(currentUserId, historyAnswer);
+        strcat(results, "getHis");
+        for (int i = 0; i < historyAnswer->numberOfAnswer; i++)
+        {
+            char *tmp = (char *)malloc(sizeof(char) * 100);
+            sprintf(tmp, "_%d:%d:%d", historyAnswer->answer[i].questionId, historyAnswer->answer[i].answer, historyAnswer->answer[i].isCorrect);
+            strcat(results, tmp);
+        }
     }
     else
     {

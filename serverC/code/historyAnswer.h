@@ -20,4 +20,5 @@ int saveNewHistoryAnswerToFile(char *username, HistoryAnswer newHistoryAnswer);
 void saveHistoryAns(char *username, Answer answer);
 void createUserHistoryFile(char *username);
 int getCurrentPoint(char *username);
+int getAnswerOfQuestionByQuestionID(char *username, int questionID);
 #endif

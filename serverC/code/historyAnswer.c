@@ -73,3 +73,28 @@ void createUserHistoryFile(char *username)
     fprintf(fp, "%d\n", 0);
     fclose(fp);
 }
+
+int getAnswerOfQuestionByQuestionID(char *username, int questionID)
+{
+    char filePath[100] = "../history-answer/";
+    printf("\n%s", username);
+    strcat(filePath, username);
+    FILE *fp = fopen(filePath, "r");
+    char line[256];
+    int count = 0;
+    int answer = 0;
+    while (fgets(line, sizeof line, fp) != NULL)
+    {
+        if(count == questionID) {
+            int questionID;
+            int status;
+            sscanf(line, "%d:%d:%d", &questionID, &answer, &status);
+            printf("\n%d:%d:%d", questionID, answer, status);
+            break;
+        }
+        count++;
+    }
+    
+    fclose(fp);
+    return answer;
+}

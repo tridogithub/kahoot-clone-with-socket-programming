@@ -16,5 +16,6 @@
 #define REQUESTRANKTABLE "reqRankTable" //receive from client
 #define GETRANKTABLE "getRankTable"
 #define REQUESTANSDETAIL "reqAnsDetail"
+#define REQUESTHISTORYANSWER "reqHis"
 
 #endif

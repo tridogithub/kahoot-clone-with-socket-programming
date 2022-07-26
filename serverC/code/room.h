@@ -18,3 +18,4 @@ void rand_room_code(int length, char *result);
 void CreateRoom(char *roomCode, char *questionSuiteID);
 char *rankOfRoom(char *roomCode);
 char *getRankTable(char *roomCode);
+char *getAnsDetail(char *roomCode, int questionId);

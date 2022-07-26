@@ -20,7 +20,8 @@ result: success
  }
 //Request total point to server: reqTotalPoint_username_roomCode
 //Get total point from server:   getTotalPoint_{point}
-//Request history answer and : client's work
+//Request history answer and : reqHis_username
+//Get history answer : getHis_{1:1:1}_{1:1:1}
 //Request rank table: reqRankTable_roomCode
 //Get rank table from server: getRankTable_Username:TotalPoint_Username:TotalPoint_Username:TotalPoint
 

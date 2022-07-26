@@ -156,3 +156,36 @@ char *getRankTable(char *roomCode)
     }
     return results;
 }
+
+char *getAnsDetail(char *roomCode, int questionId)
+{
+    int ans1 = 0;
+    int ans2 = 0;
+    int ans3 = 0;
+    int ans4 = 0;
+    Room room = getRoomByRoomCode(roomCode);
+    for (int i = 0; i < room.numberOfUser; i++)
+    {
+        int asnwer = getAnswerOfQuestionByQuestionID(room.userAndPoint[i].username, questionId);
+        if (asnwer == 1)
+        {
+            ans1++;
+        }
+        else if (asnwer == 2)
+        {
+            ans2++;
+        }
+        else if (asnwer == 3)
+        {
+            ans3++;
+        }
+        else if (asnwer == 4)
+        {
+            ans4++;
+        }
+    }
+    char *results = (char *)malloc(sizeof(char) * 500);
+    memset(results, 0, 500);
+    sprintf(results, "getAnsDetail_%d:%d:%d:%d", ans1, ans2, ans3, ans4);
+    return results;
+}
