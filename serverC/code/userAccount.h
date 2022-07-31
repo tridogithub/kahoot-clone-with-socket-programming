@@ -7,4 +7,5 @@ typedef struct
 
 int checkAuthenticated(char *username, char *password); //check in file user-account.txt
 User *getAllUser();
-int registryNewUser(User newUser); //append to file
+int registryNewUser(User* newUser); //append to file
+void login(char *username, char *password, char *result);

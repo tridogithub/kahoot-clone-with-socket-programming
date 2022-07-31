@@ -15,5 +15,9 @@
 #define GETPOINT "getTotalPoint"
 #define REQUESTRANKTABLE "reqRankTable" //receive from client
 #define GETRANKTABLE "getRankTable"
+#define REQUESTANSDETAIL "reqAnsDetail"
+#define REQUESTHISTORYANSWER "reqHis"
+#define CREATEFILE "createFile"
+#define APPENDFILE "appendFile"
 
 #endif

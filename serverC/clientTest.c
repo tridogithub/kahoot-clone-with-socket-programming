@@ -81,7 +81,6 @@ int main(int argc, char **argv)
         sendAndReceiveMessages(sendline, sockfd, recvline);
         memset(sendline, 0, strlen(sendline));
         memset(recvline, 0, strlen(recvline));
-        break;
     }
 
     exit(0);

@@ -17,6 +17,14 @@ typedef struct
     int status;                // 1-CON; 2-FINAL. Data type can be flexibly modified, depended on DEV
 } QuestionSuite;
 
+typedef struct
+{
+    char listQS[20][256];
+} ListQS;
+
 QuestionSuite getQuestionSuiteByQsID(char *qsID);
-int saveNewQuestion(char *questionSuiteID, Question question); //append to file
-char *ReturnQS();
+int saveNewQuestion(char *questionSuiteID, Question question); // append to file
+ListQS ReturnQS();
+char *getQuestionByQID(char *quesitonSuiteID, int questionID);
+char *getQuestionSuiteIDByRoomCode(char *roomCode);
+char *getDescriptionByQuestionSuiteID(char *filename);
