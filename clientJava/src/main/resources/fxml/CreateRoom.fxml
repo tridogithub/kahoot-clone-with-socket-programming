@@ -10,14 +10,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="564.0" prefWidth="878.0" style="-fx-background-color: #FFF;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateRoomController">
+<AnchorPane id="AnchorPane" prefHeight="564.0" prefWidth="878.0" style="-fx-background-color: #FFF;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateRoomController">
     <children>
         <Pane layoutX="14.0" layoutY="104.0" prefHeight="359.0" prefWidth="430.0" style="-fx-background-color: gray;" AnchorPane.bottomAnchor="101.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="104.0">
             <children>
-                <ListView fx:id="listViewQS" layoutX="4.0" layoutY="4.0" prefHeight="351.0" prefWidth="422.0" />
+                <ListView fx:id="listViewQS" layoutX="4.0" layoutY="4.0" onMouseClicked="#handleItemClicked" prefHeight="351.0" prefWidth="422.0" />
             </children>
         </Pane>
-        <Button fx:id="btnCreateRoom" layoutX="318.0" layoutY="498.0" mnemonicParsing="false" onMouseClicked="#HandleEvents" prefHeight="32.0" prefWidth="278.0" styleClass="button2" stylesheets="@../styling/fullpackstyling.css" text="Create Room" />
+        <Button fx:id="btnCreateRoom" layoutX="525.0" layoutY="492.0" mnemonicParsing="false" onMouseClicked="#handleCreateRoomBtnClick" prefHeight="32.0" prefWidth="278.0" styleClass="button2" stylesheets="@../styling/fullpackstyling.css" text="Create Room" />
         <Pane layoutX="242.0" layoutY="26.0" prefHeight="63.0" prefWidth="408.0" style="-fx-background-color: black;">
             <children>
                 <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
@@ -39,8 +39,10 @@
         </Pane>
         <Pane layoutX="457.0" layoutY="104.0" prefHeight="359.0" prefWidth="414.0" style="-fx-background-color: gray;">
             <children>
-                <TextArea prefHeight="359.0" prefWidth="414.0" text="Question suite brief description" />
+                <TextArea fx:id="txtDescription" prefHeight="359.0" prefWidth="414.0" text="Question suite brief description" />
             </children>
         </Pane>
+      <Button fx:id="btnCreateQuestionSuite" layoutX="90.0" layoutY="492.0" mnemonicParsing="false" onMouseClicked="#handleCreateQSBtnClick" prefHeight="32.0" prefWidth="278.0" styleClass="button2" stylesheets="@../styling/fullpackstyling.css" text="Upload Question Suite" />
+      <Button fx:id="btnBack" layoutX="14.0" layoutY="26.0" mnemonicParsing="false" onMouseClicked="#handleBtnBack" text="Back" />
     </children>
 </AnchorPane>

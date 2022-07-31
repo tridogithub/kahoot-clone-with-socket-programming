@@ -13,9 +13,11 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import socket.ClientSocket;
+
+import java.io.IOException;
 
 /**
- *
  * @author oXCToo
  */
 public class Main extends Application {
@@ -23,11 +25,12 @@ public class Main extends Application {
     //define your offsets here
     private double xOffset = 0;
     private double yOffset = 0;
+    public static ClientSocket client;
 
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/Login.fxml"));
-//we gonna remove the borderless thingie.  
+        //we gonna remove the borderless thingie.
         stage.initStyle(StageStyle.DECORATED);
         stage.setMaximized(false);
 
@@ -58,7 +61,11 @@ public class Main extends Application {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        String address = args[0];
+        String portString = args[1];
+        int port = Integer.parseInt(portString);
+        client = new ClientSocket(port, address);
         launch(args);
     }
 
