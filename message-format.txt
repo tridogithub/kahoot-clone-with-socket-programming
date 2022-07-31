@@ -7,7 +7,7 @@ result: success
 
 //Create room(select question suite)::::::
 	Request list of question suites: requestQS
-	Send list of question suites to client: getQS_qs1:qs2:qs3
+	Send list of question suites to client: getQS_qs1-description:qs2-description:qs3-description
 	Request server create room: cr_qs1
 	Get room code from server: getRoomCode_{roomCode}
 	
@@ -15,7 +15,7 @@ result: success
  
  while(STATUS != FINAL){
 	Client request question from server: reqQ_roomCode_questionID
-	Get question from server: getQ_questionID_question:answer1:answer2:answer3:answer4:correctAns_STATUS -> STATUS={CON, FINAL}
+	Get question from server: getQ_questionID_question:answer1:answer2:answer3:answer4:correctAns:STATUS -> STATUS={CON, FINAL}
 	Send answer to server: sendAns_roomCode_questionID:answer1:{TRUE/FALSE}
  }
 //Request total point to server: reqTotalPoint_username_roomCode
@@ -28,8 +28,14 @@ result: success
 //Get answer detail of other players:
 	reqAnsDetail_{roomCode}_{questionID}
 	getAnsDetail_{numberOfAnswer}:{numberOfAnswer}:{numberOfAnswer}:{numberOfAnswer}
+
+//Upload question suite file:
+- Create file request: createFile_{fileName}
+- Append question to file: appendFile_{fileName}-content
+
 ////Consider later:
 Tao question(optional):
 Xem totalpoint sau moi cau tra loi(Optional):
 
 None of the CODE matched --> server return CODE: error
+Special characters: ':', '-', '_'
