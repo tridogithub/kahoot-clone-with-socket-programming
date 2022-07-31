@@ -110,3 +110,16 @@ char *getQuestionSuiteIDByRoomCode(char *roomCode)
     fclose(fp);
     return result;
 }
+
+char *getDescriptionByQuestionSuiteID(char *filename)
+{
+    char filePath[100] = "../question-suite/";
+    strcat(filePath, filename);
+    FILE *fp = fopen(filePath, "r");
+    char *result = (char *)malloc(sizeof(char) * 200);
+    // fscanf(fp, "%s", result); /* read a line */
+    fgets(result, 200, fp);
+    result[strlen(result) - 1] = '\0';
+    fclose(fp);
+    return result;
+}

@@ -150,10 +150,13 @@ char *getResults(char *receivedString)
         int num = numberOfQS;
         printf("\nNum: %d", num);
         char *resultsQS = (char *)malloc(sizeof(char) * MAXLINE);
+        memset(results, 0, MAXLINE);
         strcat(resultsQS, "getQS_");
         for (int i = 0; i <= num - 1; i++)
         {
             strcat(resultsQS, listQS.listQS[i]);
+            strcat(resultsQS, "-");
+            strcat(resultsQS, getDescriptionByQuestionSuiteID(listQS.listQS[i]));
             if (i != num - 1)
             {
                 strcat(resultsQS, ":");
@@ -284,6 +287,31 @@ char *getResults(char *receivedString)
             sprintf(tmp, "_%d:%d:%d", historyAnswer->answer[i].questionId, historyAnswer->answer[i].answer, historyAnswer->answer[i].isCorrect);
             strcat(results, tmp);
         }
+    }
+    else if (strcmp(token, CREATEFILE) == 0)
+    {
+        char *fileName = strtok(NULL, "_");
+        fileName[strlen(fileName) - 2] = '\0';
+        char filePath[100] = "../question-suite/";
+        strcat(filePath, fileName);
+        FILE *fp = fopen(filePath, "w");
+        fclose(fp);
+    }
+    else if (strcmp(token, APPENDFILE) == 0)
+    {
+        token = strtok(NULL, "_");
+        char *fileName = strtok(token, "-");
+        printf("\nFile Name: %s", fileName);
+        char *content = strtok(NULL, "-");
+        printf("\nContent: %s", content);
+        content[strlen(content) - 2] = '\0';
+
+        char filePath[100] = "../question-suite/";
+        strcat(filePath, fileName);
+        FILE *fp = fopen(filePath, "a");
+        fprintf(fp, "%s\n", content);
+        fclose(fp);
+        strcpy(results, "success");
     }
     else
     {

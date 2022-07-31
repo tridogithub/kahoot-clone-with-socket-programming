@@ -27,3 +27,4 @@ int saveNewQuestion(char *questionSuiteID, Question question); // append to file
 ListQS ReturnQS();
 char *getQuestionByQID(char *quesitonSuiteID, int questionID);
 char *getQuestionSuiteIDByRoomCode(char *roomCode);
+char *getDescriptionByQuestionSuiteID(char *filename);
