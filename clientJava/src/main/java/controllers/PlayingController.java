@@ -6,8 +6,6 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -157,13 +155,12 @@ public class PlayingController implements Initializable {
             }
             //send answer
             sendAnswer();
-            //show pie chart
-            showPieChart();
-//            try {
-//                Thread.sleep(3000);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
+            Timeline timeline2 = new Timeline(new KeyFrame(Duration.seconds(2), event1 -> {
+                //show pie chart
+                showPieChart();
+            }));
+            timeline2.play();
+
             if (isFinished) {
                 try {
                     Stage stage = (Stage) btnAnswer1.getScene().getWindow();
@@ -177,17 +174,14 @@ public class PlayingController implements Initializable {
                     e.printStackTrace();
                 }
             } else {
-                Timeline timeline1 = new Timeline(new KeyFrame(Duration.seconds(5), new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent event) {
-                        reset();
-                        try {
-                            currentQuestionID += 1;
-                            getQuestionFromServer(roomCode, currentQuestionID);
-                            startTimeCounter();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                Timeline timeline1 = new Timeline(new KeyFrame(Duration.seconds(5), event1 -> {
+                    reset();
+                    try {
+                        currentQuestionID += 1;
+                        getQuestionFromServer(roomCode, currentQuestionID);
+                        startTimeCounter();
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
                 }));
                 timeline1.play();
