@@ -152,6 +152,8 @@ public class PlayingController implements Initializable {
             } else {
                 trueChoice = "FALSE";
                 currentChoiceBtn.setStyle(currentChoiceBtn.getStyle() + "-fx-border-color: #ff0000; -fx-border-width: 5px;");
+                Button correctAnsBtn = getAnswerBtnByID(Integer.valueOf(questionAndAnswer.get(currentQuestionID)));
+                correctAnsBtn.setStyle(correctAnsBtn.getStyle() + "-fx-border-color: #06ff00; -fx-border-width: 5px;");
             }
             //send answer
             sendAnswer();
@@ -161,20 +163,20 @@ public class PlayingController implements Initializable {
             }));
             timeline2.play();
 
-            if (isFinished) {
-                try {
-                    Stage stage = (Stage) btnAnswer1.getScene().getWindow();
-                    stage.close();
-                    Parent root = null;
-                    root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/EndGameScreen.fxml"));
-                    Scene scene = new Scene(root);
-                    stage.setScene(scene);
-                    stage.show();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                Timeline timeline1 = new Timeline(new KeyFrame(Duration.seconds(5), event1 -> {
+            Timeline timeline1 = new Timeline(new KeyFrame(Duration.seconds(7), event1 -> {
+                if (isFinished) {
+                    try {
+                        Stage stage = (Stage) btnAnswer1.getScene().getWindow();
+                        stage.close();
+                        Parent root = null;
+                        root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/EndGameScreen.fxml"));
+                        Scene scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } else {
                     reset();
                     try {
                         currentQuestionID += 1;
@@ -183,9 +185,9 @@ public class PlayingController implements Initializable {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                }));
-                timeline1.play();
-            }
+                }
+            }));
+            timeline1.play();
         });
     }
 
@@ -282,5 +284,17 @@ public class PlayingController implements Initializable {
         lblTimer.setVisible(true);
         pieChartAns.setVisible(false);
         pieChartAns.getData().clear();
+    }
+
+    private Button getAnswerBtnByID(Integer btnID) {
+        if (btnID == 1) {
+            return btnAnswer1;
+        } else if (btnID == 2) {
+            return btnAnswer2;
+        } else if (btnID == 3) {
+            return btnAnswer3;
+        } else {
+            return btnAnswer4;
+        }
     }
 }

@@ -18,21 +18,16 @@
             </children>
         </Pane>
         <Button fx:id="btnCreateRoom" layoutX="525.0" layoutY="492.0" mnemonicParsing="false" onMouseClicked="#handleCreateRoomBtnClick" prefHeight="32.0" prefWidth="278.0" styleClass="button2" stylesheets="@../styling/fullpackstyling.css" text="Create Room" />
-        <Pane layoutX="242.0" layoutY="26.0" prefHeight="63.0" prefWidth="408.0" style="-fx-background-color: black;">
+        <Pane layoutX="242.0" layoutY="13.0" prefHeight="76.0" prefWidth="408.0" style="-fx-background-color: ưhite;">
             <children>
-                <ImageView fitHeight="52.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="76.0" fitWidth="83.0" layoutX="21.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../images/icons8_Google_Wallet_50px.png" />
+                        <Image url="@../images/logo-icon(2).png" />
                     </image>
                 </ImageView>
-                <Label alignment="CENTER" layoutX="118.0" layoutY="3.0" prefHeight="23.0" prefWidth="173.0" text="Easy Wallet Control" textFill="WHITE">
+                <Label alignment="CENTER" layoutX="104.0" layoutY="25.0" prefHeight="27.0" prefWidth="266.0" text="Kahoot clone application">
                     <font>
-                        <Font name="Segoe UI" size="18.0" />
-                    </font>
-                </Label>
-                <Label alignment="CENTER" layoutX="124.0" layoutY="32.0" prefHeight="23.0" prefWidth="161.0" text="Pick a question suite" textFill="WHITE">
-                    <font>
-                        <Font name="Segoe UI Bold" size="15.0" />
+                        <Font name="Segoe UI Bold" size="21.0" />
                     </font>
                 </Label>
             </children>
