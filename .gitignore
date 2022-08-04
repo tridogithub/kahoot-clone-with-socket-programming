@@ -1,4 +1,4 @@
 .vscode
 *.pptx
-/clientJava/
-
+/clientJava/.idea/
+/clientJava/target/
