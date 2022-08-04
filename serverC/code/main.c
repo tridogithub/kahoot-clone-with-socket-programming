@@ -146,9 +146,9 @@ char *getResults(char *receivedString)
         //  and return string to client saved to Variable results
         int numberOfQS = 0;
         ListQS listQS = ReturnQS(&numberOfQS);
-        printf("\n%s", listQS.listQS[0]);
+        // printf("\n%s", listQS.listQS[0]);
         int num = numberOfQS;
-        printf("\nNum: %d", num);
+        // printf("\nNum: %d", num);
         char *resultsQS = (char *)malloc(sizeof(char) * MAXLINE);
         memset(results, 0, MAXLINE);
         strcat(resultsQS, "getQS_");
@@ -296,14 +296,16 @@ char *getResults(char *receivedString)
         strcat(filePath, fileName);
         FILE *fp = fopen(filePath, "w");
         fclose(fp);
+        memset(results, 0, MAXLINE);
+        strcpy(results, "success");
     }
     else if (strcmp(token, APPENDFILE) == 0)
     {
         token = strtok(NULL, "_");
         char *fileName = strtok(token, "-");
-        printf("\nFile Name: %s", fileName);
+        // printf("\nFile Name: %s", fileName);
         char *content = strtok(NULL, "-");
-        printf("\nContent: %s", content);
+        // printf("\nContent: %s", content);
         content[strlen(content) - 2] = '\0';
 
         char filePath[100] = "../question-suite/";
@@ -311,6 +313,7 @@ char *getResults(char *receivedString)
         FILE *fp = fopen(filePath, "a");
         fprintf(fp, "%s\n", content);
         fclose(fp);
+        memset(results, 0, MAXLINE);
         strcpy(results, "success");
     }
     else

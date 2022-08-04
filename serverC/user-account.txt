@@ -1,9 +1,4 @@
 username password
-test1 pass
-khanhph pass
-test3 pass
-tridv pass
 ngant pass
-tridv1 pass
-tridv2 pass
-tridv3 pass
+khanhph pass
+tridv184316 pass

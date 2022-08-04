@@ -53,7 +53,7 @@ ListQS ReturnQS(int *count)
             {
                 strcpy(listQS.listQS[i], ent->d_name);
                 i++;
-                printf("\n%d", i);
+                // printf("\n%d", i);
             }
         }
         *count = i;
@@ -116,9 +116,9 @@ char *getDescriptionByQuestionSuiteID(char *filename)
     char filePath[100] = "../question-suite/";
     strcat(filePath, filename);
     FILE *fp = fopen(filePath, "r");
-    char *result = (char *)malloc(sizeof(char) * 200);
+    char *result = (char *)malloc(sizeof(char) * 800);
     // fscanf(fp, "%s", result); /* read a line */
-    fgets(result, 200, fp);
+    fgets(result, 800, fp);
     result[strlen(result) - 1] = '\0';
     fclose(fp);
     return result;
